@@ -16,6 +16,15 @@ def create_data_files(project_name, base_url):
     if not os.path.exists(crawled):
         write_file(crawled, '')
 
+# Remove queue and crawled files (if exist)
+def remove_data_files(project_name, base_url):
+    queue = project_name + '/queue.txt'
+    crawled = project_name + '/crawled.txt'
+    if os.path.isfile(queue):
+        os.remove(queue)
+    if os.path.isfile(crawled):
+        os.remove(crawled)
+
 #Creates a new file
 def write_file(path, data):
     with open(path, 'w') as f:
@@ -40,6 +49,6 @@ def file_to_set(file_name):
 #Convert set to a file
 def set_to_file(links, file):
     delete_file_contents(file)
-    for link in links:
+    for link in sorted(links):
         append_to_file(file, link)
 
