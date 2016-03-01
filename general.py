@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import os
 
 #Each website to crawl is a separate project
@@ -19,7 +19,7 @@ def create_data_files(project_name, base_url):
 #Creates a new file
 def write_file(path, data):
     with open(path, 'w') as f:
-    f.write(data)
+        f.write(data)
 
 #Add data to an existing file
 def append_to_file(path, data):
