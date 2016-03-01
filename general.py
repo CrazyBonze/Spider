@@ -17,7 +17,7 @@ def create_data_files(project_name, base_url):
         write_file(crawled, '')
 
 # Remove queue and crawled files (if exist)
-def remove_data_files(project_name, base_url):
+def remove_data_files(project_name):
     queue = project_name + '/queue.txt'
     crawled = project_name + '/crawled.txt'
     if os.path.isfile(queue):
@@ -32,8 +32,8 @@ def write_file(path, data):
 
 #Add data to an existing file
 def append_to_file(path, data):
-    with open(path, 'a') as file:
-        file.write(data + '\n')
+    with open(path, 'a') as f:
+        f.write(data + '\n')
 
 #Delete the contents of a file
 def delete_file_contents(path):
