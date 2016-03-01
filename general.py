@@ -22,3 +22,26 @@ def write_file(path, data):
     f.write(data)
     f.close()
 
+#Add data to an existing file
+def append_to_file(path, data):
+    with open(path, 'a') as file:
+        file.write(data + '\n')
+
+#Delete the contents of a file
+def delete_file_contents(path):
+    with open(path, 'w'):
+        pass
+
+#Convert file to set
+def file_to_set(file_name):
+    results = set()
+    with open(file_name, 'rt') as f:
+        for line in f:
+            results.add(line.replace('\n', ''))
+    return results
+
+#Convert set to a file
+def set_to_file(links, file):
+    delete_file_contents(file)
+    for link in links:
+        append_to_file(file, link)
