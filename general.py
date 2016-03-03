@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import os
+import sys
+import sqlite3 as db
 
 #Each website to crawl is a separate project
 def create_project_dir(directory):
@@ -9,6 +11,17 @@ def create_project_dir(directory):
 
 #Create queue and crawled files
 def create_data_files(project_name, base_url):
+    try:
+        connection = db.connect(project_name + '/' + project_name + '.db')
+        cursor = connection.cursor()
+        #create tables
+        #insert base_url into queue table
+    except db.Error as e:
+        print('Error: ' + e.args[0])
+        sys.exit(1)
+    finally:
+        if connection:
+            connection.close()
     queue = project_name + '/queue.txt'
     crawled = project_name + '/crawled.txt'
     if not os.path.exists(queue):
@@ -20,10 +33,13 @@ def create_data_files(project_name, base_url):
 def remove_data_files(project_name):
     queue = project_name + '/queue.txt'
     crawled = project_name + '/crawled.txt'
+    db = project_name + '/' + project_name + '.db'
     if os.path.isfile(queue):
         os.remove(queue)
     if os.path.isfile(crawled):
         os.remove(crawled)
+    if os.path.isfile(db):
+        os.remove(db)
 
 #Creates a new file
 def write_file(path, data):

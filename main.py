@@ -12,8 +12,8 @@ parser.add_argument("--flush", help="empty project folder prior to crawling", ac
 
 args = parser.parse_args()
 
-PROJECT_NAME = 'boston'
-HOMEPAGE = 'https://thenewboston.com/'
+PROJECT_NAME = 'wiki'
+HOMEPAGE = 'https://en.wikipedia.org/wiki/'
 DOMAIN_NAME = get_domain_name(HOMEPAGE)
 
 QUEUE_FILE = PROJECT_NAME + '/queue.txt'
