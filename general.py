@@ -58,8 +58,10 @@ def delete_file_contents(path):
 
 #Convert file to set
 def file_to_set(file_name):
+    results = set()
     with open(file_name, 'rt') as f:
-        results = {line.replace('\n', '') for line in f}
+        for line in f:
+            results.add(line.replace('\n', ''))
     return results
 
 #Convert set to a file
